@@ -4,6 +4,7 @@ import '/components/add_task_widget.dart';
 import '/components/task_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'tasks_model.dart';
 export 'tasks_model.dart';
@@ -40,40 +41,43 @@ class _TasksWidgetState extends State<TasksWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            await showModalBottomSheet(
-              isScrollControlled: true,
-              backgroundColor: Colors.transparent,
-              context: context,
-              builder: (context) {
-                return GestureDetector(
-                  onTap: () => FocusScope.of(context).unfocus(),
-                  child: Padding(
-                    padding: MediaQuery.viewInsetsOf(context),
-                    child: const AddTaskWidget(),
-                  ),
-                );
-              },
-            ).then((value) => safeSetState(() {}));
-          },
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-          elevation: 0.0,
-          child: Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).primary,
-              borderRadius: BorderRadius.circular(50.0),
-              border: Border.all(
-                color: FlutterFlowTheme.of(context).primaryText,
-                width: 1.0,
+        floatingActionButton: Align(
+          alignment: const AlignmentDirectional(1.0, 1.0),
+          child: FloatingActionButton(
+            onPressed: () async {
+              await showModalBottomSheet(
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                context: context,
+                builder: (context) {
+                  return GestureDetector(
+                    onTap: () => FocusScope.of(context).unfocus(),
+                    child: Padding(
+                      padding: MediaQuery.viewInsetsOf(context),
+                      child: const AddTaskWidget(),
+                    ),
+                  );
+                },
+              ).then((value) => safeSetState(() {}));
+            },
+            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+            elevation: 0.0,
+            child: Container(
+              width: double.infinity,
+              height: double.infinity,
+              decoration: BoxDecoration(
+                color: FlutterFlowTheme.of(context).primary,
+                borderRadius: BorderRadius.circular(50.0),
+                border: Border.all(
+                  color: FlutterFlowTheme.of(context).primaryText,
+                  width: 1.0,
+                ),
               ),
-            ),
-            child: Icon(
-              Icons.add_rounded,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 30.0,
+              child: Icon(
+                Icons.add_rounded,
+                color: FlutterFlowTheme.of(context).primaryText,
+                size: 30.0,
+              ),
             ),
           ),
         ),
@@ -170,6 +174,39 @@ class _TasksWidgetState extends State<TasksWidget> {
                         },
                       );
                     },
+                  ),
+                ),
+                Align(
+                  alignment: const AlignmentDirectional(-1.0, 1.0),
+                  child: Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        GoRouter.of(context).prepareAuthEvent();
+                        await authManager.signOut();
+                        GoRouter.of(context).clearRedirectLocation();
+
+                        context.goNamedAuth('Login', context.mounted);
+                      },
+                      text: 'Logout',
+                      options: FFButtonOptions(
+                        height: 40.0,
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            16.0, 0.0, 16.0, 0.0),
+                        iconPadding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: FlutterFlowTheme.of(context).primary,
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Inter Tight',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                ),
+                        elevation: 0.0,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
                   ),
                 ),
               ].divide(const SizedBox(height: 12.0)),
