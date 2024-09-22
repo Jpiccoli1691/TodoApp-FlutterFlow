@@ -1,0 +1,37 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Users",
+    "type": "object",
+    "properties": {
+      "birthday": {
+        "type": "string",
+        "format": "date-time",
+        "description": "The user's birthday in UTC format."
+      },
+      "created_time": {
+        "type": "string",
+        "format": "date-time",
+        "description": "The timestamp of when the user was created."
+      },
+      "display_name": {
+        "type": "string",
+        "description": "The display name of the user."
+      },
+      "email": {
+        "type": "string",
+        "format": "email",
+        "description": "The user's email address."
+      },
+      "photo_url": {
+        "type": "string",
+        "format": "uri",
+        "description": "URL of the user's profile photo."
+      },
+      "uid": {
+        "type": "string",
+        "description": "Unique identifier for the user."
+      }
+    },
+    "required": ["birthday", "created_time", "display_name", "email", "photo_url", "uid"]
+  }
+  
